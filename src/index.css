@@ -8,51 +8,81 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cyberpunk Dark Theme */
+    --background: 220 13% 5%;
+    --foreground: 120 100% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 15% 8%;
+    --card-foreground: 120 100% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 15% 8%;
+    --popover-foreground: 120 100% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 220 13% 5%;
+    --primary-glow: 120 100% 60%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 220 13% 5%;
+    --secondary-glow: 280 100% 80%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 120 30% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 100% 70%;
+    --accent-foreground: 220 13% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 120 50% 25%;
+    --input: 220 13% 12%;
+    --ring: 120 100% 50%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Matrix green variants */
+    --matrix-green: 120 100% 50%;
+    --matrix-green-bright: 120 100% 70%;
+    --matrix-green-dim: 120 80% 30%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Neon purple variants */
+    --neon-purple: 280 100% 70%;
+    --neon-purple-bright: 280 100% 85%;
+    --neon-purple-dim: 280 80% 50%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Cyberpunk blues */
+    --cyber-blue: 180 100% 50%;
+    --cyber-blue-bright: 180 100% 70%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Terminal colors */
+    --terminal-bg: 220 13% 3%;
+    --terminal-border: 120 100% 50%;
+    --terminal-text: 120 100% 85%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Gradients */
+    --gradient-matrix: linear-gradient(135deg, hsl(var(--matrix-green)), hsl(var(--neon-purple)));
+    --gradient-cyber: linear-gradient(180deg, hsl(var(--cyber-blue)), hsl(var(--neon-purple)));
+    --gradient-terminal: linear-gradient(90deg, hsl(var(--terminal-bg)), hsl(var(--muted)));
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    /* Glows and shadows */
+    --glow-matrix: 0 0 20px hsl(var(--matrix-green) / 0.5);
+    --glow-purple: 0 0 20px hsl(var(--neon-purple) / 0.5);
+    --glow-cyber: 0 0 30px hsl(var(--cyber-blue) / 0.3);
+    --shadow-terminal: 0 4px 20px hsl(var(--matrix-green) / 0.3);
 
-    --sidebar-border: 220 13% 91%;
+    /* Animations */
+    --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.5s ease-in-out;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 120 100% 85%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 220 13% 5%;
+    --sidebar-accent: 220 13% 15%;
+    --sidebar-accent-foreground: 120 100% 85%;
+    --sidebar-border: 120 50% 25%;
+    --sidebar-ring: 120 100% 50%;
   }
 
   .dark {
@@ -101,5 +131,176 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Courier New', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Source Code Pro', monospace;
+    overflow-x: hidden;
   }
+}
+
+@layer components {
+  /* Cyberpunk glow effects */
+  .glow-matrix {
+    box-shadow: var(--glow-matrix);
+    transition: var(--transition-glow);
+  }
+  
+  .glow-purple {
+    box-shadow: var(--glow-purple);
+    transition: var(--transition-glow);
+  }
+  
+  .glow-cyber {
+    box-shadow: var(--glow-cyber);
+    transition: var(--transition-glow);
+  }
+
+  /* Terminal window styling */
+  .terminal {
+    background: hsl(var(--terminal-bg));
+    border: 1px solid hsl(var(--terminal-border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-terminal);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Matrix text effects */
+  .matrix-text {
+    color: hsl(var(--matrix-green));
+    text-shadow: 0 0 10px hsl(var(--matrix-green) / 0.8);
+    font-weight: bold;
+  }
+
+  .neon-text {
+    color: hsl(var(--neon-purple));
+    text-shadow: 0 0 10px hsl(var(--neon-purple) / 0.8);
+  }
+
+  /* Cyberpunk button variants */
+  .btn-cyber {
+    background: transparent;
+    border: 2px solid hsl(var(--matrix-green));
+    color: hsl(var(--matrix-green));
+    padding: 0.75rem 1.5rem;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-cyber);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cyber:hover {
+    background: hsl(var(--matrix-green) / 0.1);
+    box-shadow: var(--glow-matrix);
+    transform: translateY(-2px);
+  }
+
+  .btn-cyber::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--matrix-green) / 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-cyber:hover::before {
+    left: 100%;
+  }
+
+  /* Scan line animation */
+  .scan-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%, 
+      hsl(var(--matrix-green) / 0.03) 50%, 
+      hsl(var(--matrix-green) / 0.05) 51%, 
+      transparent 52%
+    );
+    background-size: 100% 4px;
+    animation: scan-lines 0.1s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch::before {
+    animation: glitch-1 0.5s infinite linear alternate-reverse;
+    color: hsl(var(--neon-purple));
+    z-index: -1;
+  }
+
+  .glitch::after {
+    animation: glitch-2 0.5s infinite linear alternate-reverse;
+    color: hsl(var(--cyber-blue));
+    z-index: -2;
+  }
+}
+
+@keyframes scan-lines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 2px); }
+  80% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px hsl(var(--matrix-green) / 0.5); }
+  50% { box-shadow: 0 0 20px hsl(var(--matrix-green) / 0.8), 0 0 30px hsl(var(--matrix-green) / 0.6); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--matrix-green)); }
 }
